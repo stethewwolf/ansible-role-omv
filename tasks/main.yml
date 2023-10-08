@@ -45,7 +45,7 @@
   notify: run_iptables4_save
   when: omv_networks is not defined
 
-- name: Allow connections to dnsmasq on selected networks - port 53/udp
+- name: Allow connections to selected nets
   iptables:
     chain: INPUT
     source: "{{ item }}"
