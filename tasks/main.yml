@@ -38,9 +38,20 @@
   when: omv_first_install
 
 
-- name: Set the policy for the INPUT chain to ACCEPT
+- name: Allow connections from all networks
   ansible.builtin.iptables:
     chain: INPUT
     policy: ACCEPT
   notify: run_iptables4_save
+  when: omv_networks is not defined
+
+- name: Allow connections to dnsmasq on selected networks - port 53/udp
+  iptables:
+    chain: INPUT
+    source: "{{ item }}"
+    jump: ACCEPT
+  notify: run_iptables_save
+  loop: "{{ omv_networks }}"
+  when: omv_networks is defined
+
 
