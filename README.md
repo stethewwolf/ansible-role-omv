@@ -26,6 +26,13 @@ omv_networks:
 ```
 for all those networks we applay the role "ACCEPT" to all connections in input, if not define this role will applay the ACCEPT policy.
 
+## Next Steps
+After you run the first installation:
+
+* set `omv_first_install: false`
+* open the browser to `http://ip/` use the default credentials `admin:openmediavault` to login
+* configure you nas as you desire
+
 ## References
 * [OpenMediaVault](https://openmediavault.org)
 * [OpenMediaVault - Debina installation](https://docs.openmediavault.org/en/stable/installation/on_debian.html)
