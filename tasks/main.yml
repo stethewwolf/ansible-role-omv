@@ -39,7 +39,7 @@
 
 
 - name: Allow connections from all networks
-  ansible.builtin.iptables:
+  iptables:
     chain: INPUT
     policy: ACCEPT
   notify: run_iptables4_save
