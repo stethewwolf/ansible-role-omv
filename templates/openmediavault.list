@@ -1,0 +1,13 @@
+# {{ ansible_managed }}
+
+deb https://packages.openmediavault.org/public {{ omv_version }} main
+# deb https://downloads.sourceforge.net/project/openmediavault/packages {{ omv_version }} main
+
+## Uncomment the following line to add software from the proposed repository.
+# deb https://packages.openmediavault.org/public {{ omv_version }}-proposed main
+# deb https://downloads.sourceforge.net/project/openmediavault/packages {{ omv_version }}-proposed main
+
+## This software is not part of OpenMediaVault, but is offered by third-party
+## developers as a service to OpenMediaVault users.
+# deb https://packages.openmediavault.org/public {{ omv_version }} partner
+# deb https://downloads.sourceforge.net/project/openmediavault/packages {{ omv_version }} partner

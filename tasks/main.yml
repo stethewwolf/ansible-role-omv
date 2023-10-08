@@ -1,0 +1,46 @@
+---
+- name: Install GNUPG
+  apt:
+      name: gnupg
+      state: latest
+
+- name: Download OMV archive key
+  ansible.builtin.apt_key:
+    url: https://packages.openmediavault.org/public/archive.key
+    state: present
+
+- name: Create OMV apt source list
+  template: 
+    src: "openmediavault.list"
+    dest: /etc/apt/sources.list.d/openmediavault.list
+    owner: root
+    group: root
+    mode: u=rw,g=rw,o=r
+
+- name: Install openmediavault keyring package
+  apt:
+    name: openmediavault-keyring
+    install_recommends: no
+    state: latest
+    update_cache: yes
+
+- name: Install openmediavault package
+  apt:
+    name: openmediavault
+    install_recommends: no
+    allow_downgrade: yes
+    state: latest
+    update_cache: yes
+
+# this command is needed to initialize the system
+- name: "Configure OMV DB"
+  command: "/usr/sbin/omv-confdbadm populate"
+  when: omv_first_install
+
+
+- name: Set the policy for the INPUT chain to ACCEPT
+  ansible.builtin.iptables:
+    chain: INPUT
+    policy: ACCEPT
+  notify: run_iptables4_save
+

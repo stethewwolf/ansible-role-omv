@@ -1,0 +1,5 @@
+## Here variables for nas server
+
+# version of OpenMediaVault
+omv_version: shaitan
+omv_first_install: true
